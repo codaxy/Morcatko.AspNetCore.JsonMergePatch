@@ -1,0 +1,21 @@
+name: Publish NuGet Packages
+on:
+  workflow_dispatch:
+jobs:
+  publish_nuget:
+    name: Publish NuGet Packages
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "6.x.x"
+      - run: dotnet nuget add source --username USERNAME --password ${{ secrets.CXOPACKAGERO }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/codaxy/index.json"
+      - run: dotnet build src/6.0-JsonMergePatch.NewtonsoftJson.sln --configuration Release
+      # - run: dotnet test src/CxoTemplatedApis.sln --configuration Release
+      - run: dotnet nuget push src/6.0-JsonMergePatch.NewtonsoftJson/bin/Release/*.nupkg --skip-duplicate --source github --api-key ${{ secrets.GITHUB_TOKEN }}

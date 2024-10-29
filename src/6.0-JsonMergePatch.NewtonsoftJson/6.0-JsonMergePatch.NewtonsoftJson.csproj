@@ -8,7 +8,7 @@
 
     <PackageId>Morcatko.AspNetCore.JsonMergePatch.NewtonsoftJson</PackageId>
     <Title>JSON Merge Patch for ASP.NET Core 6.x (Newtonsoft.Json)</Title>
-    <PackageVersion>6.0.$(VersionSuffix)</PackageVersion>
+    <PackageVersion>6.0.2</PackageVersion>
     <Authors>Ondrej Morsky</Authors>
     <Description>JSON Merge Patch support for ASP.NET Core 6.X (Newtonsoft.Json)</Description>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
