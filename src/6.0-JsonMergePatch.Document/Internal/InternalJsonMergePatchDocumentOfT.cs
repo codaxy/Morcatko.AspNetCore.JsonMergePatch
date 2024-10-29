@@ -32,7 +32,7 @@ namespace Morcatko.AspNetCore.JsonMergePatch.Internal
 
 		public virtual void AddOperation_Add(string path)
 		{
-			var propertyType = ReflectionHelper.GetPropertyTypeFromPath(_modelType, path, ContractResolver);
+			var propertyType = ReflectionHelper.GetPropertyTypeFromPath(Model.GetType(), path, ContractResolver);
 			base.Operations.Add(new Operation<TModel>(addOp, path, null, ContractResolver.ResolveContract(propertyType).DefaultCreator()));
 		}
 
