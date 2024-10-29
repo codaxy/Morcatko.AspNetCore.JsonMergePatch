@@ -16,6 +16,8 @@ jobs:
         with:
           dotnet-version: "6.x.x"
       - run: dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/codaxy/index.json"
+      - run: dotnet pack src/6.0-JsonMergePatch.Document --configuration Release
       - run: dotnet pack src/6.0-JsonMergePatch.NewtonsoftJson --configuration Release
       # - run: dotnet test src/CxoTemplatedApis.sln --configuration Release
+      - run: dotnet nuget push src/6.0-JsonMergePatch.Document/bin/Release/*.nupkg --skip-duplicate --source github --api-key ${{ secrets.GITHUB_TOKEN }}
       - run: dotnet nuget push src/6.0-JsonMergePatch.NewtonsoftJson/bin/Release/*.nupkg --skip-duplicate --source github --api-key ${{ secrets.GITHUB_TOKEN }}
